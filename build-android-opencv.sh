@@ -1,4 +1,7 @@
 #!/bin/bash
+set -eu
+set -o pipefail
+
 NDK_ROOT="${1:-${NDK_ROOT}}"
 
 ### ABIs setup
