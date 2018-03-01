@@ -11,12 +11,6 @@ WD=`dirname $SCRIPT`
 OPENCV_ROOT="${WD}/opencv"
 N_JOBS=${N_JOBS:-4}
 
-### Download android-cmake
-if [ ! -d "${WD}/android-cmake" ]; then
-    echo 'Cloning android-cmake'
-    git clone https://github.com/taka-no-me/android-cmake.git
-fi
-
 INSTALL_DIR="${WD}/android_opencv"
 rm -rf "${INSTALL_DIR}/opencv"
 
@@ -39,7 +33,7 @@ do
     cd "${temp_build_dir}"
 
     cmake -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
-          -DCMAKE_TOOLCHAIN_FILE="${WD}/android-cmake/android.toolchain.cmake" \
+          -DCMAKE_TOOLCHAIN_FILE="${NDK_ROOT}/build/cmake/android.toolchain.cmake" \
           -DANDROID_NDK="${NDK_ROOT}" \
           -DANDROID_NATIVE_API_LEVEL=${API_LEVEL} \
           -DANDROID_ABI="${ANDROID_ABI}" \
